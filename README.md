@@ -22,6 +22,7 @@ Supports JSON-driven profiles for modding and custom key bindings via SaveManage
 - **SaveManager integration** — persist and restore custom key bindings (activated via `INPUTMANAGER_SM`)
 - **EventManager integration** — broadcast `input.profileChanged`, `input.blocked`, `input.unblocked` events (activated via `INPUTMANAGER_EM` or `EVENTMANAGER_INP`)
 - **Custom Inspector** — live profile controls, active profile display, and registered profile list in Play Mode
+- **Odin Inspector integration** — `SerializedMonoBehaviour` base for full Inspector serialization of complex types; runtime-display fields marked `[ReadOnly]` in Play Mode (activated via `ODIN_INSPECTOR`)
 
 
 ## Installation
@@ -182,3 +183,4 @@ JSON entries are **merged by id** — mods can add new profiles or override Insp
 | `INPUTMANAGER_SM` | InputManager ←→ SaveManager (key binding persistence) |
 | `INPUTMANAGER_EM` | InputManager → EventManager (fire events) |
 | `EVENTMANAGER_INP` | EventManager ← InputManager (re-broadcast) |
+| `ODIN_INSPECTOR` | InputManager ↔→ Odin Inspector (`SerializedMonoBehaviour` + `[ReadOnly]`) |
