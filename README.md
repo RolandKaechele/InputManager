@@ -13,6 +13,7 @@ Supports JSON-driven profiles for modding and custom key bindings via SaveManage
 - **Block detection** — `OnInputBlocked` / `OnInputUnblocked` events for UI feedback
 - **JSON / Modding** — define profiles in `StreamingAssets/input_profiles.json`; merged by `id` on top of Inspector data
 - **Events** — `OnProfileChanged`, `OnInputBlocked`, `OnInputUnblocked` for reactive integration
+- **Rewired integration** — use Rewired as the input backend (replace Unity legacy Input); player id configurable in Inspector (activated via `INPUTMANAGER_REWIRED`)
 - **StateManager integration** — auto-switch profile on `AppState` change (activated via `INPUTMANAGER_STM`)
 - **CutsceneManager integration** — push `"blocked"` profile on sequence start; pop on end/skip (activated via `INPUTMANAGER_CSM`)
 - **DialogueManager integration** — push `"dialogue"` profile on dialogue start; pop on complete (activated via `INPUTMANAGER_DM`)
@@ -80,6 +81,7 @@ npm install
 | `jsonPath` | `"input_profiles.json"` | Path relative to `StreamingAssets/` |
 | `maxStackDepth` | `8` | Maximum profile stack depth |
 | `verboseLogging` | `false` | Log all profile transitions to Console |
+| `rewiredPlayerId` *(INPUTMANAGER_REWIRED)* | `0` | Rewired player index to read input from |
 
 ### InputProfile fields
 
@@ -110,6 +112,21 @@ bool blocked = inp.IsFullyBlocked();
 inp.OnProfileChanged += id => Debug.Log($"Profile: {id}");
 inp.OnInputBlocked   += () => Debug.Log("Input blocked");
 ```
+
+
+## Rewired Integration
+
+When `INPUTMANAGER_REWIRED` is defined, `IsActionDown` and `GetAxis` are routed through Rewired instead of Unity's legacy Input system.
+
+**Setup:**
+
+1. Install Rewired from the Unity Asset Store.
+2. Add the Rewired `InputManager` prefab to your scene.
+3. Add `INPUTMANAGER_REWIRED` to **Project Settings → Player → Scripting Define Symbols**.
+4. Set `rewiredPlayerId` on the InputManager Inspector (default `0`).
+5. Use the same string action names in `IsActionDown`/`GetAxis` that are configured in your Rewired Input Manager.
+
+> Profile-level blocking (`lockMove`, `lockAction`) and the profile stack work identically whether Rewired is active or not.
 
 
 ## Bridge Components
@@ -156,6 +173,7 @@ JSON entries are **merged by id** — mods can add new profiles or override Insp
 
 | Define | Integration |
 | ------ | ----------- |
+| `INPUTMANAGER_REWIRED` | InputManager ←→ Rewired (input backend) |
 | `INPUTMANAGER_STM` | InputManager ←→ StateManager |
 | `INPUTMANAGER_CSM` | InputManager ←→ CutsceneManager |
 | `INPUTMANAGER_DM` | InputManager ←→ DialogueManager |

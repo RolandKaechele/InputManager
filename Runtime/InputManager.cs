@@ -45,6 +45,12 @@ namespace InputManager.Runtime
         [Tooltip("Log all profile transitions to the Console.")]
         [SerializeField] private bool verboseLogging;
 
+#if INPUTMANAGER_REWIRED
+        [Header("Rewired")]
+        [Tooltip("Rewired-Spieler-Index, dessen Input gelesen wird (Standard: 0).")]
+        [SerializeField] private int rewiredPlayerId = 0;
+#endif
+
         // ──────────────────────────────────────────────────────────
         // Events
         // ──────────────────────────────────────────────────────────
@@ -66,6 +72,10 @@ namespace InputManager.Runtime
         private readonly Dictionary<string, KeyCode>      _globalMap  = new Dictionary<string, KeyCode>(StringComparer.OrdinalIgnoreCase);
         private readonly Stack<InputProfile>              _stack      = new Stack<InputProfile>();
         private bool _wasBlocked;
+
+#if INPUTMANAGER_REWIRED
+        private Rewired.Player _rewiredPlayer;
+#endif
 
         // ──────────────────────────────────────────────────────────
         // Public API
@@ -128,6 +138,12 @@ namespace InputManager.Runtime
         {
             if (IsFullyBlocked()) return false;
 
+#if INPUTMANAGER_REWIRED
+            var rewiredPlayer = GetRewiredPlayer();
+            if (rewiredPlayer != null)
+                return rewiredPlayer.GetButton(actionId);
+#endif
+
             // Check profile-specific binding
             var profile = CurrentProfile;
             if (profile != null)
@@ -155,6 +171,13 @@ namespace InputManager.Runtime
         public float GetAxis(string axisId)
         {
             if (CurrentProfile != null && CurrentProfile.lockMove) return 0f;
+
+#if INPUTMANAGER_REWIRED
+            var rewiredPlayer = GetRewiredPlayer();
+            if (rewiredPlayer != null)
+                return rewiredPlayer.GetAxis(axisId);
+#endif
+
             return Input.GetAxis(axisId);
         }
 
@@ -175,7 +198,30 @@ namespace InputManager.Runtime
 
             if (!string.IsNullOrEmpty(initialProfileId) && _map.ContainsKey(initialProfileId))
                 SetProfile(initialProfileId);
+
+#if INPUTMANAGER_REWIRED
+            // Rewired ist zum Awake-Zeitpunkt ggf. noch nicht bereit — Lazy-Initialisierung via GetRewiredPlayer()
+            if (Rewired.ReInput.isReady)
+                _rewiredPlayer = Rewired.ReInput.players.GetPlayer(rewiredPlayerId);
+#endif
         }
+
+#if INPUTMANAGER_REWIRED
+        // ──────────────────────────────────────────────────────────
+        // Rewired-Hilfsmethoden
+        // ──────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Gibt den gecachten Rewired-Spieler zurück. Initialisiert bei Bedarf lazy.
+        /// </summary>
+        private Rewired.Player GetRewiredPlayer()
+        {
+            if (_rewiredPlayer != null) return _rewiredPlayer;
+            if (Rewired.ReInput.isReady)
+                _rewiredPlayer = Rewired.ReInput.players.GetPlayer(rewiredPlayerId);
+            return _rewiredPlayer;
+        }
+#endif
 
         // ──────────────────────────────────────────────────────────
         // Internal helpers
