@@ -1,0 +1,9 @@
+{
+  "name": "InputManager.Editor",
+  "rootNamespace": "InputManager.Editor",
+  "references": ["InputManager.Runtime"],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true
+}
