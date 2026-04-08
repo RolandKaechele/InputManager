@@ -1,61 +1,135 @@
 {
-  "profiles": [
-    {
-      "id": "gameplay",
-      "displayName": "Gameplay",
-      "lockMove": false,
-      "lockAction": false,
-      "lockLook": false,
-      "category": "gameplay",
-      "bindings": [
-        { "actionId": "Move_Up",    "primaryKey": 119, "secondaryKey": 273 },
-        { "actionId": "Move_Down",  "primaryKey": 115, "secondaryKey": 274 },
-        { "actionId": "Move_Left",  "primaryKey": 97,  "secondaryKey": 276 },
-        { "actionId": "Move_Right", "primaryKey": 100, "secondaryKey": 275 },
-        { "actionId": "Action",     "primaryKey": 122, "secondaryKey": 101 },
-        { "actionId": "Jump",       "primaryKey": 32,  "secondaryKey": -1  },
-        { "actionId": "Sprint",     "primaryKey": 304, "secondaryKey": -1  },
-        { "actionId": "Map",        "primaryKey": 109, "secondaryKey": -1  },
-        { "actionId": "Pause",      "primaryKey": 27,  "secondaryKey": -1  }
-      ]
-    },
-    {
-      "id": "dialogue",
-      "displayName": "Dialogue",
-      "lockMove": true,
-      "lockAction": true,
-      "lockLook": true,
-      "category": "ui",
-      "bindings": [
-        { "actionId": "Confirm",    "primaryKey": 13,  "secondaryKey": 122 },
-        { "actionId": "Skip",       "primaryKey": 32,  "secondaryKey": -1  },
-        { "actionId": "Cancel",     "primaryKey": 27,  "secondaryKey": -1  }
-      ]
-    },
-    {
-      "id": "minigame",
-      "displayName": "Mini-Game",
-      "lockMove": false,
-      "lockAction": false,
-      "lockLook": false,
-      "category": "gameplay",
-      "bindings": [
-        { "actionId": "Move_Up",    "primaryKey": 119, "secondaryKey": 273 },
-        { "actionId": "Move_Down",  "primaryKey": 115, "secondaryKey": 274 },
-        { "actionId": "Move_Left",  "primaryKey": 97,  "secondaryKey": 276 },
-        { "actionId": "Move_Right", "primaryKey": 100, "secondaryKey": 275 },
-        { "actionId": "Confirm",    "primaryKey": 13,  "secondaryKey": 122 },
-        { "actionId": "Cancel",     "primaryKey": 27,  "secondaryKey": -1  }
-      ]
-    },
-    {
-      "id": "blocked",
-      "displayName": "Blocked (no input)",
-      "lockMove": true,
-      "lockAction": true,
-      "lockLook": true,
-      "category": "system",
-      "bindings": []
-    }
-  ]
+    "profiles":  [
+                     {
+                         "id":  "gameplay",
+                         "displayName":  "Gameplay",
+                         "lockMove":  false,
+                         "lockAction":  false,
+                         "lockLook":  false,
+                         "category":  "gameplay",
+                         "bindings":  [
+                                          {
+                                              "actionId":  "Move_Up",
+                                              "primaryKey":  119,
+                                              "secondaryKey":  273
+                                          },
+                                          {
+                                              "actionId":  "Move_Down",
+                                              "primaryKey":  115,
+                                              "secondaryKey":  274
+                                          },
+                                          {
+                                              "actionId":  "Move_Left",
+                                              "primaryKey":  97,
+                                              "secondaryKey":  276
+                                          },
+                                          {
+                                              "actionId":  "Move_Right",
+                                              "primaryKey":  100,
+                                              "secondaryKey":  275
+                                          },
+                                          {
+                                              "actionId":  "Action",
+                                              "primaryKey":  122,
+                                              "secondaryKey":  101
+                                          },
+                                          {
+                                              "actionId":  "Jump",
+                                              "primaryKey":  32,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Sprint",
+                                              "primaryKey":  304,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Map",
+                                              "primaryKey":  109,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Pause",
+                                              "primaryKey":  27,
+                                              "secondaryKey":  -1
+                                          }
+                                      ]
+                     },
+                     {
+                         "id":  "dialogue",
+                         "displayName":  "Dialogue",
+                         "lockMove":  true,
+                         "lockAction":  true,
+                         "lockLook":  true,
+                         "category":  "ui",
+                         "bindings":  [
+                                          {
+                                              "actionId":  "Confirm",
+                                              "primaryKey":  13,
+                                              "secondaryKey":  122
+                                          },
+                                          {
+                                              "actionId":  "Skip",
+                                              "primaryKey":  32,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Cancel",
+                                              "primaryKey":  27,
+                                              "secondaryKey":  -1
+                                          }
+                                      ]
+                     },
+                     {
+                         "id":  "minigame",
+                         "displayName":  "Mini-Game",
+                         "lockMove":  false,
+                         "lockAction":  false,
+                         "lockLook":  false,
+                         "category":  "gameplay",
+                         "bindings":  [
+                                          {
+                                              "actionId":  "Move_Up",
+                                              "primaryKey":  119,
+                                              "secondaryKey":  273
+                                          },
+                                          {
+                                              "actionId":  "Move_Down",
+                                              "primaryKey":  115,
+                                              "secondaryKey":  274
+                                          },
+                                          {
+                                              "actionId":  "Move_Left",
+                                              "primaryKey":  97,
+                                              "secondaryKey":  276
+                                          },
+                                          {
+                                              "actionId":  "Move_Right",
+                                              "primaryKey":  100,
+                                              "secondaryKey":  275
+                                          },
+                                          {
+                                              "actionId":  "Confirm",
+                                              "primaryKey":  13,
+                                              "secondaryKey":  122
+                                          },
+                                          {
+                                              "actionId":  "Cancel",
+                                              "primaryKey":  27,
+                                              "secondaryKey":  -1
+                                          }
+                                      ]
+                     },
+                     {
+                         "id":  "blocked",
+                         "displayName":  "Blocked (no input)",
+                         "lockMove":  true,
+                         "lockAction":  true,
+                         "lockLook":  true,
+                         "category":  "system",
+                         "bindings":  [
+
+                                      ]
+                     }
+                 ]
 }
