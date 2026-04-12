@@ -1,0 +1,29 @@
+﻿{
+    "profiles":  [
+                     {
+                         "id":  "dialogue",
+                         "displayName":  "Dialogue",
+                         "lockMove":  true,
+                         "lockAction":  true,
+                         "lockLook":  true,
+                         "category":  "ui",
+                         "bindings":  [
+                                          {
+                                              "actionId":  "Confirm",
+                                              "primaryKey":  13,
+                                              "secondaryKey":  122
+                                          },
+                                          {
+                                              "actionId":  "Skip",
+                                              "primaryKey":  32,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Cancel",
+                                              "primaryKey":  27,
+                                              "secondaryKey":  -1
+                                          }
+                                      ]
+                     }
+                 ]
+}

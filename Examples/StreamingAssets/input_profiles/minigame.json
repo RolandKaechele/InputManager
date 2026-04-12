@@ -1,0 +1,44 @@
+﻿{
+    "profiles":  [
+                     {
+                         "id":  "minigame",
+                         "displayName":  "Mini-Game",
+                         "lockMove":  false,
+                         "lockAction":  false,
+                         "lockLook":  false,
+                         "category":  "gameplay",
+                         "bindings":  [
+                                          {
+                                              "actionId":  "Move_Up",
+                                              "primaryKey":  119,
+                                              "secondaryKey":  273
+                                          },
+                                          {
+                                              "actionId":  "Move_Down",
+                                              "primaryKey":  115,
+                                              "secondaryKey":  274
+                                          },
+                                          {
+                                              "actionId":  "Move_Left",
+                                              "primaryKey":  97,
+                                              "secondaryKey":  276
+                                          },
+                                          {
+                                              "actionId":  "Move_Right",
+                                              "primaryKey":  100,
+                                              "secondaryKey":  275
+                                          },
+                                          {
+                                              "actionId":  "Confirm",
+                                              "primaryKey":  13,
+                                              "secondaryKey":  122
+                                          },
+                                          {
+                                              "actionId":  "Cancel",
+                                              "primaryKey":  27,
+                                              "secondaryKey":  -1
+                                          }
+                                      ]
+                     }
+                 ]
+}

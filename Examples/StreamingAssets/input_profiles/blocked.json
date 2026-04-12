@@ -1,0 +1,15 @@
+﻿{
+    "profiles":  [
+                     {
+                         "id":  "blocked",
+                         "displayName":  "Blocked (no input)",
+                         "lockMove":  true,
+                         "lockAction":  true,
+                         "lockLook":  true,
+                         "category":  "system",
+                         "bindings":  [
+
+                                      ]
+                     }
+                 ]
+}

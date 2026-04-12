@@ -1,0 +1,59 @@
+﻿{
+    "profiles":  [
+                     {
+                         "id":  "gameplay",
+                         "displayName":  "Gameplay",
+                         "lockMove":  false,
+                         "lockAction":  false,
+                         "lockLook":  false,
+                         "category":  "gameplay",
+                         "bindings":  [
+                                          {
+                                              "actionId":  "Move_Up",
+                                              "primaryKey":  119,
+                                              "secondaryKey":  273
+                                          },
+                                          {
+                                              "actionId":  "Move_Down",
+                                              "primaryKey":  115,
+                                              "secondaryKey":  274
+                                          },
+                                          {
+                                              "actionId":  "Move_Left",
+                                              "primaryKey":  97,
+                                              "secondaryKey":  276
+                                          },
+                                          {
+                                              "actionId":  "Move_Right",
+                                              "primaryKey":  100,
+                                              "secondaryKey":  275
+                                          },
+                                          {
+                                              "actionId":  "Action",
+                                              "primaryKey":  122,
+                                              "secondaryKey":  101
+                                          },
+                                          {
+                                              "actionId":  "Jump",
+                                              "primaryKey":  32,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Sprint",
+                                              "primaryKey":  304,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Map",
+                                              "primaryKey":  109,
+                                              "secondaryKey":  -1
+                                          },
+                                          {
+                                              "actionId":  "Pause",
+                                              "primaryKey":  27,
+                                              "secondaryKey":  -1
+                                          }
+                                      ]
+                     }
+                 ]
+}

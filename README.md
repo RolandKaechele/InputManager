@@ -56,7 +56,7 @@ npm install
 1. Create a persistent manager GameObject (or reuse your existing manager object).
 2. Attach `InputManager`.
 3. Set `initialProfileId` to the default profile (e.g. `"gameplay"`).
-4. Add profile definitions in the Inspector (or via `input_profiles.json`).
+4. Add profile definitions in the Inspector or via JSON files in `StreamingAssets/input_profiles/`.
 5. Attach any bridge components (see Bridge Components below).
 
 ### Recommended default profiles
@@ -197,6 +197,6 @@ Open via **JSON Editors → Input Manager** in the Unity menu bar, or via the **
 | ------ | ------ |
 | **Load** | Reads all `*.json` from `StreamingAssets/input_profiles/`; creates the folder if missing |
 | **Edit** | Add / remove / reorder input profiles using the Inspector list |
-| **Save** | Writes to `StreamingAssets/input_profiles/input_profiles.json` and calls `AssetDatabase.Refresh()` |
+| **Save** | Writes each entry as `<id>.json` to `StreamingAssets/input_profiles/`; entries without an `id` are skipped. Calls `AssetDatabase.Refresh()` |
 
 With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).
