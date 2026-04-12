@@ -11,7 +11,7 @@ Supports JSON-driven profiles for modding and custom key bindings via SaveManage
 - **Action query** — `IsActionDown(actionId)` with profile-level binding overrides and global fallback
 - **Axis query** — `GetAxis(axisId)` returns 0 when movement is locked by the active profile
 - **Block detection** — `OnInputBlocked` / `OnInputUnblocked` events for UI feedback
-- **JSON / Modding** — define profiles in `StreamingAssets/input_profiles.json`; merged by `id` on top of Inspector data
+- **JSON / Modding** — define profiles in `StreamingAssets/input_profiles/`; merged by `id` on top of Inspector data
 - **Events** — `OnProfileChanged`, `OnInputBlocked`, `OnInputUnblocked` for reactive integration
 - **Rewired integration** — use Rewired as the input backend (replace Unity legacy Input); player id configurable in Inspector (activated via `INPUTMANAGER_REWIRED`)
 - **StateManager integration** — auto-switch profile on `AppState` change (activated via `INPUTMANAGER_STM`)
@@ -78,8 +78,8 @@ npm install
 | `profiles` | *(empty)* | Built-in input profiles |
 | `initialProfileId` | `"gameplay"` | Profile activated on Awake |
 | `globalBindings` | *(empty)* | Fallback key bindings for all profiles |
-| `loadFromJson` | `false` | Merge profiles from `input_profiles.json` |
-| `jsonPath` | `"input_profiles.json"` | Path relative to `StreamingAssets/` |
+| `loadFromJson` | `false` | Merge profiles from `input_profiles/` |
+| `jsonPath` | `"input_profiles/"` | Folder relative to `StreamingAssets/` containing `.json` files to merge. Falls back to single-file mode if the value points to an existing file. |
 | `maxStackDepth` | `8` | Maximum profile stack depth |
 | `verboseLogging` | `false` | Log all profile transitions to Console |
 | `rewiredPlayerId` *(INPUTMANAGER_REWIRED)* | `0` | Rewired player index to read input from |
@@ -147,7 +147,10 @@ EventManager can also re-broadcast InputManager events using `InputEventBridge` 
 
 ## JSON / Modding
 
-Place `input_profiles.json` in `StreamingAssets/` (path is configurable):
+Place one or more `.json` files in `StreamingAssets/input_profiles/` (path is configurable).
+All `*.json` files in the folder are loaded and merged by `id` at startup.
+
+**Example:** `StreamingAssets/input_profiles/main.json`
 
 ```json
 {
@@ -192,8 +195,8 @@ Open via **JSON Editors → Input Manager** in the Unity menu bar, or via the **
 
 | Action | Result |
 | ------ | ------ |
-| **Load** | Reads `StreamingAssets/input_profiles.json`; creates the file if missing |
+| **Load** | Reads all `*.json` from `StreamingAssets/input_profiles/`; creates the folder if missing |
 | **Edit** | Add / remove / reorder input profiles using the Inspector list |
-| **Save** | Writes back to `StreamingAssets/input_profiles.json` and calls `AssetDatabase.Refresh()` |
+| **Save** | Writes to `StreamingAssets/input_profiles/input_profiles.json` and calls `AssetDatabase.Refresh()` |
 
 With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).

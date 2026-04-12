@@ -42,7 +42,7 @@ namespace InputManager.Runtime
         [SerializeField] private bool loadFromJson;
 
         [Tooltip("Path relative to StreamingAssets/.")]
-        [SerializeField] private string jsonPath = "input_profiles.json";
+        [SerializeField] private string jsonPath = "input_profiles/";
 
         [Header("Stack")]
         [Tooltip("Maximum profile stack depth.")]
@@ -280,27 +280,40 @@ namespace InputManager.Runtime
 
         private void LoadJson()
         {
-            string full = Path.Combine(Application.streamingAssetsPath, jsonPath);
-            if (!File.Exists(full))
+            string fullPath = Path.Combine(Application.streamingAssetsPath, jsonPath);
+            if (Directory.Exists(fullPath))
             {
-                Debug.LogWarning($"[InputManager] JSON not found: {full}");
-                return;
+                foreach (var file in Directory.GetFiles(fullPath, "*.json", SearchOption.TopDirectoryOnly))
+                    MergeInputProfilesFromFile(file);
             }
+            else if (File.Exists(fullPath))
+            {
+                MergeInputProfilesFromFile(fullPath);
+            }
+            else
+            {
+                Debug.LogWarning($"[InputManager] JSON not found: {fullPath}");
+            }
+        }
+
+        private void MergeInputProfilesFromFile(string path)
+        {
             try
             {
-                string json = File.ReadAllText(full);
+                string json = File.ReadAllText(path);
                 var manifest = JsonUtility.FromJson<InputManifestJson>(json);
+                if (manifest?.profiles == null) return;
                 foreach (var p in manifest.profiles)
                 {
                     if (string.IsNullOrEmpty(p.id)) continue;
                     _map[p.id] = p;
                 }
                 if (verboseLogging)
-                    Debug.Log($"[InputManager] Loaded {manifest.profiles.Count} profiles from {jsonPath}.");
+                    Debug.Log($"[InputManager] Merged from {path}.");
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[InputManager] Failed to parse {jsonPath}: {ex.Message}");
+                Debug.LogError($"[InputManager] Failed to load JSON: {ex.Message}");
             }
         }
     }
