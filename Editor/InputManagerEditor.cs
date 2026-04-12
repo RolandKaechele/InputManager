@@ -12,6 +12,9 @@ namespace InputManager.Editor
         {
             DrawDefaultInspector();
 
+            EditorGUILayout.Space(4);
+            if (GUILayout.Button("Open JSON Editor")) InputJsonEditorWindow.ShowWindow();
+
             var manager = (InputManager.Runtime.InputManager)target;
 
             EditorGUILayout.Space();

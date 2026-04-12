@@ -184,3 +184,16 @@ JSON entries are **merged by id** — mods can add new profiles or override Insp
 | `INPUTMANAGER_EM` | InputManager → EventManager (fire events) |
 | `EVENTMANAGER_INP` | EventManager ← InputManager (re-broadcast) |
 | `ODIN_INSPECTOR` | InputManager ↔→ Odin Inspector (`SerializedMonoBehaviour` + `[ReadOnly]`) |
+
+
+## Editor Tools
+
+Open via **JSON Editors → Input Manager** in the Unity menu bar, or via the **Open JSON Editor** button in the InputManager Inspector.
+
+| Action | Result |
+| ------ | ------ |
+| **Load** | Reads `StreamingAssets/input_profiles.json`; creates the file if missing |
+| **Edit** | Add / remove / reorder input profiles using the Inspector list |
+| **Save** | Writes back to `StreamingAssets/input_profiles.json` and calls `AssetDatabase.Refresh()` |
+
+With **ODIN_INSPECTOR** active, the list uses Odin's enhanced drawer (drag-to-sort, collapsible entries).
